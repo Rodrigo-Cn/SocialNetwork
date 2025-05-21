@@ -7,15 +7,22 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * @var string
+    */
+    protected $connection = 'mysql';
+
+    /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->charset('utf8mb4');
+            $table->collation('utf8mb4_unicode_ci');
             $table->string('name');
             $table->string('gender');
-            $table->int('marital_status');
+            $table->integer('marital_status');
             $table->string('description');
             $table->date('date_birth');
             $table->string('image_profile');
@@ -27,7 +34,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('username');
             $table->string('phonenumber');
-            $table->string('username');
             $table->rememberToken();
             $table->timestamps();
         });
