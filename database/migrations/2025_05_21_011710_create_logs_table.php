@@ -19,7 +19,9 @@ return new class extends Migration
             $table->id();
             $table->string('reference');
             $table->json('data');
+            $table->unsignedBigInteger('user_id');
             $table->dateTime('action_time');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
