@@ -21,21 +21,23 @@ return new class extends Migration
             $table->charset('utf8mb4');
             $table->collation('utf8mb4_unicode_ci');
             $table->string('name');
-            $table->string('gender');
-            $table->integer('marital_status');
-            $table->string('description');
+            $table->unsignedBigInteger('gender_id');
+            $table->unsignedBigInteger('marital_status_id')->nullable()->default(1);
+            $table->string('description')->nullable();
             $table->date('date_birth');
-            $table->string('image_profile');
-            $table->string('job');
-            $table->dateTime('last_login');
-            $table->boolean('online');
+            $table->string('image_profile')->nullable();
+            $table->string('job')->nullable()->default('Trabalho não cadastrado');
+            $table->dateTime('last_login')->nullable();
+            $table->boolean('online')->default(0);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('username');
-            $table->string('phonenumber');
+            $table->string('username')->unique();
+            $table->string('phonenumber')->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('marital_status_id')->references('id')->on('marital_status')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
