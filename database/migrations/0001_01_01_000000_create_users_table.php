@@ -21,8 +21,6 @@ return new class extends Migration
             $table->charset('utf8mb4');
             $table->collation('utf8mb4_unicode_ci');
             $table->string('name');
-            $table->unsignedBigInteger('gender_id');
-            $table->unsignedBigInteger('marital_status_id')->nullable()->default(1);
             $table->string('description')->nullable();
             $table->date('date_birth');
             $table->string('image_profile')->nullable();
@@ -36,8 +34,6 @@ return new class extends Migration
             $table->string('phonenumber')->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('marital_status_id')->references('id')->on('marital_status')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

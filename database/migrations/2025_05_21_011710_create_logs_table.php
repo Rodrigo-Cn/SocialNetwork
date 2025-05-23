@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('data');
             $table->unsignedBigInteger('user_id');
             $table->dateTime('action_time');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('logs', function (Blueprint $table) {
+            $table->dropForeign('logs_user_id_foreign');
+        });
         Schema::dropIfExists('logs');
     }
 };
