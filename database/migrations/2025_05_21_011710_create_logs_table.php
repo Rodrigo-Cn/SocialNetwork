@@ -10,6 +10,7 @@ return new class extends Migration
      * @var string
      */
     protected $connection = 'mysql';
+
     /**
      * Run the migrations.
      */
@@ -17,7 +18,7 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->string('reference');
+            $table->string('reference', 90);
             $table->json('data');
             $table->unsignedBigInteger('user_id');
             $table->dateTime('action_time');

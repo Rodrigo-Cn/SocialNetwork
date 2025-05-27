@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * @var string
+     */
+    protected $connection = 'mysql';
+
+    /**
      * Run the migrations.
      */
     public function up(): void
