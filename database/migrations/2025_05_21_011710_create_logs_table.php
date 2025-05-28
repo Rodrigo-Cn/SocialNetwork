@@ -18,6 +18,8 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
+            $table->charset('utf8mb4');
+            $table->collation('utf8mb4_unicode_ci');
             $table->string('reference', 90);
             $table->json('data');
             $table->unsignedBigInteger('user_id');

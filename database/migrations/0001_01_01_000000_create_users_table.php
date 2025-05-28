@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('job', 50)->nullable()->default('Trabalho não cadastrado');
             $table->dateTime('last_login')->nullable();
             $table->boolean('online')->default(0);
+            $table->boolean('activate');
             $table->string('email', 90)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 90);

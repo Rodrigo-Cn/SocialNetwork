@@ -18,6 +18,8 @@ return new class extends Migration
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
+            $table->charset('utf8mb4');
+            $table->collation('utf8mb4_unicode_ci');
             $table->text('description')->nullable();
             $table->string('image_url')->nullable();
             $table->string('video_url')->nullable();
