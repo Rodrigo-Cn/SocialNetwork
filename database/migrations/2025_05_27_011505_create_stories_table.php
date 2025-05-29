@@ -21,8 +21,8 @@ return new class extends Migration
             $table->charset('utf8mb4');
             $table->collation('utf8mb4_unicode_ci');
             $table->text('description')->nullable();
-            $table->string('image_url')->nullable();
-            $table->string('video_url')->nullable();
+            $table->string('image_url', 255)->nullable();
+            $table->string('video_url', 255)->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

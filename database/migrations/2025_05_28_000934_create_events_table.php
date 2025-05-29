@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->charset('utf8mb4');
             $table->collation('utf8mb4_unicode_ci');
-            $table->string('title', 60)->unique();
+            $table->string('title', 60);
             $table->text('description')->nullable();
-            $table->string('image_url', 90)->nullable();
+            $table->string('image_url', 255)->nullable();
             $table->dateTime('date');
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('category_id');
