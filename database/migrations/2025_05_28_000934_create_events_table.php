@@ -20,9 +20,8 @@ return new class extends Migration
             $table->string('image_url', 255)->nullable();
             $table->dateTime('date');
             $table->unsignedBigInteger('owner_id');
-            $table->unsignedBigInteger('category_id');
             $table->timestamps();
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

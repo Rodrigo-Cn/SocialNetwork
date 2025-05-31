@@ -22,7 +22,7 @@ return new class extends Migration
             $table->collation('utf8mb4_unicode_ci');
             $table->string('image_url', 255)->nullable();
             $table->unsignedBigInteger('message_id')->nullable();
-            $table->foreign('message_id')->references('id')->on('messages');
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
         });
     }
 

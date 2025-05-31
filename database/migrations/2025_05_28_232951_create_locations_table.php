@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('state', 70)->nullable();
             $table->unsignedBigInteger('post_id');
             $table->timestamps();
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

@@ -7,13 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * @var string
+     */
+    protected $connection = 'mysql';
+
+    /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->unsignedBigInteger('community_id')->nullable();
-            $table->foreign('community_id')->references('id')->on('communities');
+            $table->foreign('community_id')->references('id')->on('communities')->onDelete('cascade');
         });
     }
 
