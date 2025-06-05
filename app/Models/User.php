@@ -56,4 +56,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function events(){
+        return $this->belongsToMany('user_event', 'user_id', 'event_id');
+    }
+
+    public function address(){
+        return $this->morphOne(Address::class, 'addressable');
+    }
 }
