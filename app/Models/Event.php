@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Event extends Model
 {
@@ -11,19 +14,23 @@ class Event extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['title', 'description', 'image_url', 'date', 'owner_id', 'category_id', 'community_id'];
 
-    public function category(){
+    public function category(): BelongsTo
+    {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function users(){
+    public function users(): BelongsToMany
+    {
         return $this->belongsToMany('user_event', 'event_id', 'user_id');
     }
 
-    public function community(){
+    public function community(): BelongsTo
+    {
         return $this->belongsTo(Community::class, 'community_id', 'id');
     }
 
-    public function adress(){
+    public function adress(): MorphOne
+    {
         return $this->morphOne(Address::class, 'addressable');
     }
 }

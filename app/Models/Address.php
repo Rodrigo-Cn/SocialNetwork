@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Address extends Model
 {
@@ -11,7 +12,8 @@ class Address extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['addressable_id', 'addressable_type','country', 'city', 'street', 'district'];
 
-    public function addressable(){
+    public function addressable(): MorphTo
+    {
         return $this->morphTo();
     }
 }

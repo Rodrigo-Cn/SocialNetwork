@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Community extends Model
 {
@@ -11,7 +12,8 @@ class Community extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'description', 'image_url', 'type'];
 
-    public function events(){
+    public function events(): HasMany
+    {
         return $this->hasMany(Event::class, 'community_id', 'id');
     }
 }

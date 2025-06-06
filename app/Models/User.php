@@ -4,6 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -57,11 +60,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function events(){
+    public function events(): BelongsToMany
+    {
         return $this->belongsToMany('user_event', 'user_id', 'event_id');
     }
 
-    public function address(){
+    public function address(): MorphOne
+    {
         return $this->morphOne(Address::class, 'addressable');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 }
