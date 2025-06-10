@@ -29,8 +29,13 @@ class Event extends Model
         return $this->belongsTo(Community::class, 'community_id', 'id');
     }
 
-    public function adress(): MorphOne
+    public function address(): MorphOne
     {
         return $this->morphOne(Address::class, 'addressable');
+    }
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'owner_id', 'id');
     }
 }

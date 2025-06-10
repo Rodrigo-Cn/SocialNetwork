@@ -82,4 +82,9 @@ class User extends Authenticatable
             ->withPivot('administrator', 'master')
         ;
     }
+
+    public function ownedCommunities(): HasMany
+    {
+        return $this->hasMany(Community::class, 'owner_id', 'id');
+    }
 }
