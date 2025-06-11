@@ -107,4 +107,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Gender::class, 'gender_id', 'id');
     }
+
+    public function invites(): HasMany
+    {
+        return $this->hasMany(Invite::class, 'user_id', 'id');
+    }
 }
