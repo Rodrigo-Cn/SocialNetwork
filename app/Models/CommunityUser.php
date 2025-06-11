@@ -2,24 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class CommunityUser extends Model
+class CommunityUser extends Pivot
 {
     protected $connection = 'mysql';
     protected $table = 'community_user';
     protected $primaryKey = 'id';
+
     protected $fillable = ['administrator', 'master', 'user_id', 'community_id'];
 
-    public function user():BelongsToMany
+    public function user(): BelongsTo
     {
-        return $this->belongsToMany(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
-    public function community():BelongsToMany
+    public function community(): BelongsTo
     {
-        return $this->belongsToMany(Community::class, 'community_id', 'id');
+        return $this->belongsTo(Community::class);
     }
 }
