@@ -87,4 +87,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Community::class, 'owner_id', 'id');
     }
+
+    public function followings(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'followed_id')
+                    ->withPivot('best_friend', 'blocked')
+                    ->withTimestamps();
+    }
+
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'followed_id', 'user_id')
+                    ->withPivot('best_friend', 'blocked')
+                    ->withTimestamps();
+    }
 }
