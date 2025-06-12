@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class MaritalStatus extends Model
 {
@@ -11,4 +12,9 @@ class MaritalStatus extends Model
     protected $table = 'marital_status';
     protected $primaryKey = 'id';
     protected $fillable = ['status'];
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'marital_status_id', 'id');
+    }
 }

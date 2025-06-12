@@ -122,4 +122,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Log::class, 'user_id', 'id');
     }
+
+    public function maritalStatus(): HasOne
+    {
+        return $this->hasOne(MaritalStatus::class, 'marital_status_id', 'id');
+    }
 }

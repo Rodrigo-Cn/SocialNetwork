@@ -22,7 +22,7 @@ return new class extends Migration
             $table->collation('utf8mb4_unicode_ci');
             $table->string('country', 70);
             $table->string('state', 70)->nullable();
-            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('post_id')->unique();
             $table->timestamps();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
