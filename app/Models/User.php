@@ -127,4 +127,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(MaritalStatus::class, 'marital_status_id', 'id');
     }
+
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id', 'id');
+    }
+
+    public function receivedMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'receiver_id', 'id');
+    }
 }
