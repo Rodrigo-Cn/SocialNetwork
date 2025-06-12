@@ -112,4 +112,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Invite::class, 'user_id', 'id');
     }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class, 'user_id', 'id');
+    }
 }
