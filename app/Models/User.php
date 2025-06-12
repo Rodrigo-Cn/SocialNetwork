@@ -118,8 +118,8 @@ class User extends Authenticatable
         return $this->hasMany(Like::class, 'user_id', 'id');
     }
 
-    public function logs(): HasOne
+    public function logs(): HasMany
     {
-        return $this->hasOne(Log::class, 'user_id', 'id');
+        return $this->hasMany(Log::class, 'user_id', 'id');
     }
 }
