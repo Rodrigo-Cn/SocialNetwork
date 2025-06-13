@@ -147,4 +147,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class, 'user_id', 'id');
     }
+
+    public function stories(): HasMany
+    {
+        return $this->hasMany(Story::class, 'user_id', 'id');
+    }
 }
