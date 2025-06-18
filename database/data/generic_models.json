@@ -1,0 +1,176 @@
+{
+  "maritalStatus": [
+    "Solteiro(a)",
+    "Casado(a)",
+    "Viúvo(a)",
+    "Relacionamento Sério"
+  ],
+  "genders": [
+    "Masculino",
+    "Feminino",
+    "Não-binário",
+    "Prefere não informar"
+  ],
+  "categories": [
+    {
+      "name": "Apresentação",
+      "description": "Exposição oral ou visual de um tema ou conteúdo."
+    },
+    {
+      "name": "Treinamento",
+      "description": "Atividade para desenvolvimento de habilidades."
+    },
+    {
+      "name": "Reunião",
+      "description": "Encontro para tratar de assuntos gerais."
+    },
+    {
+      "name": "Oficina",
+      "description": "Atividade prática com foco em aprendizado."
+    },
+    {
+      "name": "Palestra",
+      "description": "Dissertação formal sobre um tema específico."
+    },
+    {
+      "name": "Seminário",
+      "description": "Evento educativo com apresentações e debates."
+    },
+    {
+      "name": "Conferência",
+      "description": "Evento com múltiplas palestras sobre um tema central."
+    },
+    {
+      "name": "Webinar",
+      "description": "Evento transmitido ao vivo pela internet."
+    },
+    {
+      "name": "Workshop",
+      "description": "Atividade interativa com foco técnico ou prático."
+    },
+    {
+      "name": "Painel",
+      "description": "Discussão com vários participantes sobre um assunto."
+    },
+    {
+      "name": "Sessão de perguntas",
+      "description": "Momento destinado a tirar dúvidas do público."
+    },
+    {
+      "name": "Roda de conversa",
+      "description": "Encontro informal para troca de ideias."
+    },
+    {
+      "name": "Apresentação de projeto",
+      "description": "Exposição dos detalhes de um projeto."
+    },
+    {
+      "name": "Encontro",
+      "description": "Reunião de pessoas com interesse em comum."
+    },
+    {
+      "name": "Evento online",
+      "description": "Qualquer tipo de atividade realizada virtualmente."
+    },
+    {
+      "name": "Evento presencial",
+      "description": "Atividade realizada com presença física dos participantes."
+    },
+    {
+      "name": "Atividade interativa",
+      "description": "Evento que envolve participação ativa do público."
+    },
+    {
+      "name": "Sessão técnica",
+      "description": "Apresentação focada em detalhes técnicos de um tema."
+    },
+    {
+      "name": "Discussão em grupo",
+      "description": "Atividade com troca de opiniões entre os participantes."
+    },
+    {
+      "name": "Demonstração",
+      "description": "Exibição prática de um processo ou produto."
+    },
+    {
+      "name": "Lançamento",
+      "description": "Evento para apresentar algo novo ao público."
+    },
+    {
+      "name": "Cerimônia",
+      "description": "Evento formal para celebrações ou reconhecimentos."
+    },
+    {
+      "name": "Premiação",
+      "description": "Entrega de prêmios a pessoas ou projetos."
+    },
+    {
+      "name": "Feira",
+      "description": "Evento com múltiplos expositores ou atrações."
+    },
+    {
+      "name": "Congresso",
+      "description": "Grande evento com diversas atividades simultâneas."
+    },
+    {
+      "name": "Hackathon",
+      "description": "Maratona colaborativa para desenvolvimento de soluções."
+    },
+    {
+      "name": "Mesa redonda",
+      "description": "Debate com participantes convidados."
+    },
+    {
+      "name": "Pitch",
+      "description": "Apresentação rápida de uma ideia ou proposta."
+    },
+    {
+      "name": "Painel de especialistas",
+      "description": "Discussão conduzida por profissionais da área."
+    },
+    {
+      "name": "Exposição",
+      "description": "Apresentação visual de produtos ou projetos."
+    },
+    {
+      "name": "Mostra",
+      "description": "Evento para exibição de trabalhos ou criações."
+    },
+    {
+      "name": "Networking",
+      "description": "Encontro informal para troca de contatos e experiências."
+    },
+    {
+      "name": "Maratona",
+      "description": "Atividade prolongada com foco em produtividade."
+    },
+    {
+      "name": "Ensaio",
+      "description": "Simulação ou preparação para um evento principal."
+    },
+    {
+      "name": "Evento híbrido",
+      "description": "Evento que ocorre online e presencialmente ao mesmo tempo."
+    },
+    {
+      "name": "Rodada de conversa",
+      "description": "Momento estruturado para fala de diferentes participantes."
+    },
+    {
+      "name": "Sessão de feedback",
+      "description": "Atividade focada em avaliações e sugestões."
+    },
+    {
+      "name": "Dinâmica de grupo",
+      "description": "Atividade colaborativa com objetivos definidos."
+    },
+    {
+      "name": "Encerramento",
+      "description": "Momento final para concluir o evento."
+    },
+    {
+      "name": "Abertura",
+      "description": "Momento inicial para introduzir o evento."
+    }
+  ]
+}
