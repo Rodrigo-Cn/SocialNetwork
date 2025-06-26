@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\GenderService;
 use Illuminate\Http\Request;
 
 class GenderController extends Controller
 {
-    public function __construct()
-    {
 
+    protected GenderService $genderService;
+
+    public function __construct(GenderService $genderService)
+    {
+        $this->genderService = $genderService;
     }
 
     public function index()
