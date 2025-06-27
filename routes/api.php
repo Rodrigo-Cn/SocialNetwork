@@ -10,8 +10,15 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('maritalstatus/', MaritalStatusController::class)->only(['index', 'show']);
+Route::apiResource('maritalstatus', MaritalStatusController::class)
+    ->only(['index', 'show'])
+    ->names('maritalstatus');
 
-Route::apiResource('genders/', GenderController::class)->only(['index', 'show']);
+Route::apiResource('genders', GenderController::class)
+    ->only(['index', 'show'])
+    ->names('genders');
 
-Route::apiResource('categories/', Category::class)->only(['index', 'show']);
+Route::apiResource('categories', Category::class)
+    ->only(['index', 'show'])
+    ->names('categories');
+

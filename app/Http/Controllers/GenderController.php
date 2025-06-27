@@ -17,11 +17,11 @@ class GenderController extends Controller
 
     public function index()
     {
-
+        return response()->json($this->genderService->getAll(), 200);
     }
 
     public function show(string $id)
     {
-
+        return response()->json($this->genderService->findById($id), 200);
     }
 }
