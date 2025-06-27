@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\MaritalStatusController;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +18,7 @@ Route::apiResource('genders', GenderController::class)
     ->only(['index', 'show'])
     ->names('genders');
 
-Route::apiResource('categories', Category::class)
+Route::apiResource('categories', CategoryController::class)
     ->only(['index', 'show'])
     ->names('categories');
 
