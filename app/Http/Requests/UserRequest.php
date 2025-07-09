@@ -70,4 +70,10 @@ class UserRequest extends FormRequest
             'phonenumber' => 'telefone',
         ];
     }
+
+    public function wantsJson()
+    {
+        return true;
+    }
+
 }
