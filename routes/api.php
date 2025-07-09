@@ -4,17 +4,26 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\MaritalStatusController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
-Route::prefix('auth')->group(function () {
-    Route::post('register/', [AuthController::class, 'register']);
-    Route::post('login/', [AuthController::class, 'login']);
+Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::post('login', [AuthController::class, 'login'])->withoutMiddleware('auth:sanctum');
     Route::post('logout', [AuthController::class, 'logout']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+
+});
+
+Route::prefix('users')->group(function () {
+    Route::post('register', [UserController::class, 'register']);
+    Route::put('update', [UserController::class, 'update']);
+    Route::get('{id}', [UserController::class, 'show']);
 });
 
 Route::apiResource('maritalstatus', MaritalStatusController::class)
