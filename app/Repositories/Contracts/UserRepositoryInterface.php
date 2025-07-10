@@ -7,4 +7,6 @@ use App\Repositories\Contracts\PatternRepositoryInterface;
 interface UserRepositoryInterface
 {
     public function register(array $params);
+
+    public function findByEmail(string $email);
 }

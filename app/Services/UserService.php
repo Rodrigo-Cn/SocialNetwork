@@ -4,7 +4,9 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use Illuminate\Support\Facades\Hash;
 use Exception;
+
 
 class UserService
 {
@@ -26,7 +28,7 @@ class UserService
                         'job' => $params['job'],
                         'email' => $params['email'],
                         'username' => $params['username'],
-                        'password' => bcrypt($params['password']),
+                        'password' => Hash::make($params['password']),
                         'phonenumber' => $params['phonenumber'],
                         'online' => 0,
                         'activate' => 1,
