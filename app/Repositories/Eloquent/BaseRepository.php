@@ -26,16 +26,13 @@ class BaseRepository implements PatternRepositoryInterface
 
     public function update(int|string $id, array $params)
     {
-        $model = $this->find($id);
-        $model->update($params);
-        return $model;
+        return $this->find($id)->update($params);
     }
 
 
     public function delete(int|string $id)
     {
-        $model = $this->find($id);
-        return $model->delete();
+        return $this->find($id)->delete();
     }
 
 }
