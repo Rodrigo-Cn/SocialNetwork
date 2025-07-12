@@ -16,8 +16,18 @@ class AuthService
 
     public function login(array $params)
     {
+        $user = $this->userRepository->findByEmail($params['email']);
+
+        if($user->attempt > 5){
+            return response()->json([
+                'success' => false,
+                'message' => 'Máximo de tentativas. Contate o suporte.'
+            ], 401);
+        }
+
+        $user = $this->userRepository->updateAttempt($user);
+
         if (Auth::attempt($params)) {
-            $user = $this->userRepository->findByEmail($params['email']);
 
             if (!$user) {
                 return response()->json([
@@ -27,6 +37,8 @@ class AuthService
             }
 
             $token = $user->createToken('auth_token');
+
+            $this->userRepository->resetAttempt($user);
 
             return response()->json([
                 'success' => true,

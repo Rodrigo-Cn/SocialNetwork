@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('password', 90);
             $table->string('username', 90)->unique();
             $table->string('phonenumber', 11)->unique()->nullable();
-            $table->boolean('tentativas')->default(0);
+            $table->boolean('attempt')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
