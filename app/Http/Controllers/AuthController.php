@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AuthRequest;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 use Throwable;
 
 class AuthController extends Controller
@@ -33,12 +34,30 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         try {
+            $token = $request->bearerToken();
+
+            if (!$token) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Você não informou o token.'
+                ], 401);
+            }
+
+            $accessToken = PersonalAccessToken::findToken($token);
+
+            if (!$accessToken || !$request->user()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Token inválido.'
+                ], 401);
+            }
+
             $request->user()->currentAccessToken()->delete();
 
             return response()->json([
                 'success' => true,
                 'message' => 'Logout realizado com sucesso.'
-            ]);
+            ], 200);
         } catch (Throwable $e) {
             return response()->json([
                 'success' => false,

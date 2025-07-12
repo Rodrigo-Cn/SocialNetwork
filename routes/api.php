@@ -13,7 +13,7 @@ Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::post('login', [AuthController::class, 'login'])->withoutMiddleware('auth:sanctum');
-    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout'])->withoutMiddleware('auth:sanctum');
 });
 
 Route::middleware('auth:sanctum')->group(function () {
