@@ -55,7 +55,6 @@ class UserService
                     'error_message' => $throwable->getMessage(),
                     'file' => $throwable->getFile(),
                     'line' => $throwable->getLine(),
-                    'trace' => $throwable->getTraceAsString(),
                     'request' => $params,
                     'headers' => request()->headers->all(),
                     'server' => request()->server(),
@@ -63,6 +62,7 @@ class UserService
                 'user_id' => $user->id ?? 4,
                 'action_time' => Carbon::now()
             ]);
+
             return response()->json([
                 'success' => false,
                 'message' => 'Ocorreu um erro interno. Contate o suporte.'
