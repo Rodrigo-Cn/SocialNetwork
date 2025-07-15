@@ -8,6 +8,6 @@ use App\Models\Log;
 class LogRepository implements LogRepositoryInterface
 {
     public function create(array $params){
-        return Log::create([$params]);
+        return Log::create($params);
     }
 }
