@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Middleware\CheckUserIsBannedMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\ForceJsonResponse;
+use App\Http\Middleware\ForceJsonResponseMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -13,7 +14,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->prepend(ForceJsonResponse::class);
+        $middleware->api(prepend: [
+            ForceJsonResponseMiddleware::class,
+            CheckUserIsBannedMiddleware::class,
+        ]);
+
+        $middleware->alias([
+            'checkUserBanned' => CheckUserIsBannedMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

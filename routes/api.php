@@ -12,7 +12,7 @@ Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::post('login', [AuthController::class, 'login'])->withoutMiddleware('auth:sanctum');
+    Route::post('login', [AuthController::class, 'login'])->withoutMiddleware(['auth:sanctum', 'checkUserBanned']);
     Route::post('logout', [AuthController::class, 'logout'])->withoutMiddleware('auth:sanctum');
 });
 

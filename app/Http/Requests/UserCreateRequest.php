@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Support\ValidationMessages;
 
-class UserRequest extends FormRequest
+class UserCreateRequest extends FormRequest
 {
     public function authorize(): bool
     {

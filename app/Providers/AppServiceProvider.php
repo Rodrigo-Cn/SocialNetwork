@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\CheckUserIsBannedMiddleware;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-
+        $this->app->singleton(CheckUserIsBannedMiddleware::class);
     }
 
     /**
