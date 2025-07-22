@@ -13,7 +13,7 @@ Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::post('login', [AuthController::class, 'login'])->withoutMiddleware(['auth:sanctum', 'checkUserBanned']);
-    Route::post('logout', [AuthController::class, 'logout'])->withoutMiddleware('auth:sanctum');
+    Route::post('logout', [AuthController::class, 'logout'])->withoutMiddleware(['auth:sanctum', 'checkUserBanned']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::prefix('users')->group(function () {
-    Route::post('register', [UserController::class, 'register']);
+    Route::post('register', [UserController::class, 'register'])->withoutMiddleware(['auth:sanctum', 'checkUserBanned']);
     Route::put('update', [UserController::class, 'update']);
     Route::get('{id}', [UserController::class, 'show']);
 });

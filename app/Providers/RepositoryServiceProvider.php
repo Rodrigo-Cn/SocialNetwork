@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use App\Models\MaritalStatus;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Contracts\EventRepositoryInterface;
 use App\Repositories\Contracts\GenderRepositoryInterface;
 use App\Repositories\Contracts\LogRepositoryInterface;
 use App\Repositories\Contracts\MaritalStatusRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Eloquent\CategoryRepository;
+use App\Repositories\Eloquent\EventRepository;
 use App\Repositories\Eloquent\GenderRepository;
 use App\Repositories\Eloquent\LogRepository;
 use App\Repositories\Eloquent\MaritalStatusRepository;
@@ -27,6 +29,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(MaritalStatusRepositoryInterface::class, MaritalStatusRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(LogRepositoryInterface::class, LogRepository::class);
+        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
     }
 
     /**
