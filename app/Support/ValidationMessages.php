@@ -65,4 +65,6 @@ class ValidationMessages
     public const UNIQUE = 'O campo :attribute já está em uso.';
     public const URL = 'O campo :attribute deve ser uma URL válida.';
     public const UUID = 'O campo :attribute deve ser um UUID válido.';
+    public const MIN_FILE = 'O campo :attribute deve ter no mínimo :min kilobytes.';
+    public const MAX_FILE = 'O campo :attribute não deve ter mais que :max kilobytes.';
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\MaritalStatusController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,3 +39,7 @@ Route::apiResource('categories', CategoryController::class)
     ->only(['index', 'show'])
     ->names('categories');
 
+Route::prefix('posts')->group(function () {
+    Route::post('feed', [PostController::class, 'storeProfilePost']);
+    Route::post('community', [PostController::class, 'storeCommunityPosty']);
+});
