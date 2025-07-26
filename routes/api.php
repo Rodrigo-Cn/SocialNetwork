@@ -40,6 +40,6 @@ Route::apiResource('categories', CategoryController::class)
     ->names('categories');
 
 Route::prefix('posts')->group(function () {
-    Route::post('feed', [PostController::class, 'storeProfilePost']);
+    Route::post('feed', [PostController::class, 'storeFeedPost']);
     Route::post('community', [PostController::class, 'storeCommunityPosty']);
 });
