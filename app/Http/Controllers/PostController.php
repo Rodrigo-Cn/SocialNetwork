@@ -46,7 +46,7 @@ class PostController extends Controller
 
             return response()->json([
                 'success' => true,
-                'post' => $response
+                'data' => $response
             ], 201);
         } catch(\Throwable $throwable) {
             $this->logRepository->create([

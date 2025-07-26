@@ -18,7 +18,10 @@ Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-
+    Route::prefix('posts')->group(function () {
+        Route::post('feed', [PostController::class, 'storeFeedPost']);
+        Route::post('community', [PostController::class, 'storeCommunityPosty']);
+    });
 });
 
 Route::prefix('users')->group(function () {
@@ -38,8 +41,3 @@ Route::apiResource('genders', GenderController::class)
 Route::apiResource('categories', CategoryController::class)
     ->only(['index', 'show'])
     ->names('categories');
-
-Route::prefix('posts')->group(function () {
-    Route::post('feed', [PostController::class, 'storeFeedPost']);
-    Route::post('community', [PostController::class, 'storeCommunityPosty']);
-});
