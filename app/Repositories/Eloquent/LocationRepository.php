@@ -12,4 +12,9 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
     {
         $this->model = $location;
     }
+    
+    public function findByPostId(int $postId)
+    {
+        return $this->model->where('post_id', $postId)->get();
+    }
 }

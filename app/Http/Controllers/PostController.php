@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostFeedCreateRequest;
+use App\Http\Requests\PostFeedUpdateRequest;
 use App\Services\PostService;
 use App\Repositories\Contracts\LogRepositoryInterface;
 use Illuminate\Http\Request;
@@ -19,25 +20,16 @@ class PostController extends Controller
         $this->logRepository = $logRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function storeFeedPost(PostFeedCreateRequest $request)
     {
         try {
@@ -50,7 +42,7 @@ class PostController extends Controller
             ], 201);
         } catch(\Throwable $throwable) {
             $this->logRepository->create([
-                'reference' => 'UserController@create',
+                'reference' => 'PostController@storeFeedPost',
                 'data' => json_encode([
                     'error_message' => $throwable->getMessage(),
                     'file' => $throwable->getFile(),
@@ -70,41 +62,58 @@ class PostController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function storeCommunityPost(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function updateFeedPost(PostFeedUpdateRequest $request, int $id)
+    {
+        try {
+            $params = $request->validated();
+            $response = $this->postService->edit($params, $id);
+
+            return response()->json([
+                'success' => true,
+                'data' => $response
+            ], 201);
+        } catch(\Throwable $throwable) {
+            $this->logRepository->create([
+                'reference' => 'PostController@updateFeedPost',
+                'data' => json_encode([
+                    'error_message' => $throwable->getMessage(),
+                    'file' => $throwable->getFile(),
+                    'line' => $throwable->getLine(),
+                    'request' => $params,
+                    'headers' => request()->headers->all(),
+                    'server' => request()->server(),
+                ]),
+                'user_id' => $user->id ?? 4,
+                'action_time' => Carbon::now()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Ocorreu um erro interno. Contate o suporte.'
+            ], 500);
+        }
+    }
+
+    public function updateCommunityPost(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('posts')->group(function () {
         Route::post('feed', [PostController::class, 'storeFeedPost']);
         Route::post('community', [PostController::class, 'storeCommunityPosty']);
+        Route::put('feed', [PostController::class, 'updateFeedPost']);
+        Route::put('community', [PostController::class, 'updateCommunityPosty']);
     });
 });
 

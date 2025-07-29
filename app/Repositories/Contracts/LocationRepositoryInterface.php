@@ -6,5 +6,5 @@ use App\Repositories\Contracts\PatternRepositoryInterface;
 
 interface LocationRepositoryInterface extends PatternRepositoryInterface
 {
-
+    public function findByPostId(int $id);
 }
