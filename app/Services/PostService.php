@@ -20,7 +20,6 @@ class PostService
     {
         $this->postRepository = $postRepository;
         $this->locationRepository = $locationRepository;
-        $this->location = [];
     }
 
     public function create(Array $params)
@@ -45,6 +44,7 @@ class PostService
                 'status' => $params['status'],
                 'attached_url' => $params['attached_url'],
                 'highlight' => $params['highlight'],
+                'community_id' => $params['community_id'] ?? null,
                 'user_id' => Auth::id()
             ]);
 
@@ -58,7 +58,7 @@ class PostService
 
             return [
                 'post' => $post,
-                'location' => $this->location
+                'location' => $this->location ?? []
             ];
         });
     }
@@ -120,7 +120,7 @@ class PostService
 
             return [
                 'post' => $post,
-                'location' => $this->location
+                'location' => $this->location ?? []
             ];
         });
     }

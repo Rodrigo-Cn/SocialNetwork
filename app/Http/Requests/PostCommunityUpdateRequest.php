@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Support\ValidationMessages;
 
-class PostCommunityCreateRequest extends FormRequest
+class PostCommunityUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

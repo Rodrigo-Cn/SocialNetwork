@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostCommunityCreateRequest;
+use App\Http\Requests\PostCommunityUpdateRequest;
 use App\Http\Requests\PostFeedCreateRequest;
 use App\Http\Requests\PostFeedUpdateRequest;
 use App\Services\PostService;
@@ -62,9 +64,36 @@ class PostController extends Controller
         }
     }
 
-    public function storeCommunityPost(Request $request)
+    public function storeCommunityPost(PostCommunityCreateRequest $request)
     {
-        //
+        try {
+            $params = $request->validated();
+            $response = $this->postService->create($params);
+
+            return response()->json([
+                'success' => true,
+                'data' => $response
+            ], 201);
+        } catch(\Throwable $throwable) {
+            $this->logRepository->create([
+                'reference' => 'PostController@storeCommunityPost',
+                'data' => json_encode([
+                    'error_message' => $throwable->getMessage(),
+                    'file' => $throwable->getFile(),
+                    'line' => $throwable->getLine(),
+                    'request' => $params,
+                    'headers' => request()->headers->all(),
+                    'server' => request()->server(),
+                ]),
+                'user_id' => $user->id ?? 4,
+                'action_time' => Carbon::now()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Ocorreu um erro interno. Contate o suporte.'
+            ], 500);
+        }
     }
 
     public function show(string $id)
@@ -109,9 +138,36 @@ class PostController extends Controller
         }
     }
 
-    public function updateCommunityPost(Request $request, string $id)
+    public function updateCommunityPost(PostCommunityUpdateRequest $request, string $id)
     {
-        //
+        try {
+            $params = $request->validated();
+            $response = $this->postService->edit($params, $id);
+
+            return response()->json([
+                'success' => true,
+                'data' => $response
+            ], 201);
+        } catch(\Throwable $throwable) {
+            $this->logRepository->create([
+                'reference' => 'PostController@updateCommunityPost',
+                'data' => json_encode([
+                    'error_message' => $throwable->getMessage(),
+                    'file' => $throwable->getFile(),
+                    'line' => $throwable->getLine(),
+                    'request' => $params,
+                    'headers' => request()->headers->all(),
+                    'server' => request()->server(),
+                ]),
+                'user_id' => $user->id ?? 4,
+                'action_time' => Carbon::now()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Ocorreu um erro interno. Contate o suporte.'
+            ], 500);
+        }
     }
 
     public function destroy(string $id)
