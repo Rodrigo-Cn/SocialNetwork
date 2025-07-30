@@ -106,7 +106,7 @@ class PostController extends Controller
         //
     }
 
-    public function updateFeedPost(PostFeedUpdateRequest $request, int $id)
+    public function updateFeedPost(PostFeedUpdateRequest $request, string|int $id)
     {
         try {
             $params = $request->validated();
@@ -138,7 +138,7 @@ class PostController extends Controller
         }
     }
 
-    public function updateCommunityPost(PostCommunityUpdateRequest $request, string $id)
+    public function updateCommunityPost(PostCommunityUpdateRequest $request, string|int $id)
     {
         try {
             $params = $request->validated();
@@ -170,8 +170,34 @@ class PostController extends Controller
         }
     }
 
-    public function destroy(string $id)
+    public function destroy(string|int $id)
     {
-        //
+        try {
+            $response = $this->postService->delete($id);
+
+            return response()->json([
+                'success' => true,
+                'data' => $response
+            ], 201);
+        } catch(\Throwable $throwable) {
+            $this->logRepository->create([
+                'reference' => 'PostController@updateCommunityPost',
+                'data' => json_encode([
+                    'error_message' => $throwable->getMessage(),
+                    'file' => $throwable->getFile(),
+                    'line' => $throwable->getLine(),
+                    'headers' => request()->headers->all(),
+                    'server' => request()->server(),
+                    'ip' => request()->ip(),
+                ]),
+                'user_id' => $user->id ?? 4,
+                'action_time' => Carbon::now()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Ocorreu um erro interno. Contate o suporte.'
+            ], 500);
+        }
     }
 }

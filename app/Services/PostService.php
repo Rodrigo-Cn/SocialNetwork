@@ -5,10 +5,12 @@ namespace App\Services;
 use App\Models\Location;
 use App\Repositories\Contracts\LocationRepositoryInterface;
 use App\Repositories\Contracts\PostRepositoryInterface;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostService
 {
@@ -63,7 +65,7 @@ class PostService
         });
     }
 
-    public function edit(Array $params, int $id)
+    public function edit(Array $params, array|int $id)
     {
         return DB::transaction(function() use ($params, $id){
             $imagePath = null;
@@ -123,5 +125,34 @@ class PostService
                 'location' => $this->location ?? []
             ];
         });
+    }
+
+    public function delete(array|int $id)
+    {
+        $post = $this->postRepository->find($id);
+
+        if(empty($post)){
+            throw new NotFoundHttpException('Post informado não existe ou não foi encontrado');
+        }
+
+        if($post->image_url){
+            Storage::delete(Str::replaceFirst('/storage/', '', $post->image_url));
+        }
+
+        if($post->video_url){
+            Storage::delete(Str::replaceFirst('/storage/', '', $post->video_url));
+        }
+
+        $location = $this->locationRepository->findByPostId($post->id);
+        if($location){
+            $location->delete();
+        }
+
+        $post->delete();
+
+        return [
+            'post' => $post,
+            'location' => $location ?? []
+        ];
     }
 }

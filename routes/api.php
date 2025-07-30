@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('community', [PostController::class, 'storeCommunityPost']);
         Route::put('feed', [PostController::class, 'updateFeedPost']);
         Route::put('community', [PostController::class, 'updateCommunityPost']);
+        Route::delete('{id}', [PostController::class, 'destroy']);
     });
 });
 
