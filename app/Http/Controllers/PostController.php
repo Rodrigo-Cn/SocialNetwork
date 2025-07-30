@@ -96,14 +96,9 @@ class PostController extends Controller
         }
     }
 
-    public function show(string $id)
+    public function edit(string|int $id)
     {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
+        return $this->postService->getPost($params, $id);
     }
 
     public function updateFeedPost(PostFeedUpdateRequest $request, string|int $id)

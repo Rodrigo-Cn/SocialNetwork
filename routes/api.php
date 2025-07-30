@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('feed', [PostController::class, 'updateFeedPost']);
         Route::put('community', [PostController::class, 'updateCommunityPost']);
         Route::delete('{id}', [PostController::class, 'destroy']);
+        Route::get('{id}', [PostController::class, 'edit']);
     });
 });
 

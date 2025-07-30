@@ -155,4 +155,13 @@ class PostService
             'location' => $location ?? []
         ];
     }
+
+    public function getPost(array|int $id)
+    {
+        $post = $this->postRepository->find($id);
+        return [
+            'post' => $post,
+            'location' => $this->locationRepository->findByPostId($post->id) ?? []
+        ];
+    }
 }
