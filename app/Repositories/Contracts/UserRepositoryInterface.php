@@ -10,11 +10,13 @@ interface UserRepositoryInterface
 
     public function findByEmail(string $email);
 
-    public function update(array $params, int $id);
+    public function update(array $params, string|int $id);
 
     public function updateAttempt(User $user);
 
     public function resetAttempt(User $user);
 
-    public function findById(int $id);
+    public function findById(string|int $id);
+
+    public function persistImage(string $imageUrl, string|int $i);
 }

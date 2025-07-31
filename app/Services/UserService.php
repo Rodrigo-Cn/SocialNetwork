@@ -6,8 +6,11 @@ use App\Repositories\Contracts\LogRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
-use Exception;
+
 use Throwable;
 
 class UserService
@@ -68,5 +71,21 @@ class UserService
                 'message' => 'Ocorreu um erro interno. Contate o suporte.'
             ], 500);
         }
+    }
+
+    public function persistProfileImage(array $params)
+    {
+        $user = $this->userRepository->findById(Auth::id());
+        $path = null;
+
+        if($user->image_profile){
+            Storage::delete(Str::replaceFirst('/storage/', '', $user->image_profile));
+        }
+
+        if($params['image']){
+            $path = $params['image']->storeAs('uploads/user/profile', md5($user->id) . uniqid() . '.' . $params['image']->getClientOriginalExtension());
+        }
+
+        return $this->userRepository->persistImage($path, $user->id);
     }
 }

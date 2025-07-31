@@ -26,12 +26,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('{id}', [PostController::class, 'destroy']);
         Route::get('{id}', [PostController::class, 'edit']);
     });
-});
 
-Route::prefix('users')->group(function () {
-    Route::post('register', [UserController::class, 'register'])->withoutMiddleware(['auth:sanctum', 'checkUserBanned']);
-    Route::put('update', [UserController::class, 'update']);
-    Route::get('{id}', [UserController::class, 'show']);
+    Route::prefix('users')->group(function () {
+        Route::post('register', [UserController::class, 'register'])->withoutMiddleware(['auth:sanctum', 'checkUserBanned']);
+        Route::put('update', [UserController::class, 'update']);
+        Route::get('{id}', [UserController::class, 'show']);
+        Route::put('image/profile', [UserController::class, 'storeImageProfile']);
+    });
 });
 
 Route::apiResource('maritalstatus', MaritalStatusController::class)

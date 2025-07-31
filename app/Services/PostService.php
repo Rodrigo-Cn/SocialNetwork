@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Location;
 use App\Repositories\Contracts\LocationRepositoryInterface;
 use App\Repositories\Contracts\PostRepositoryInterface;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;

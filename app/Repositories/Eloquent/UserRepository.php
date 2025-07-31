@@ -12,7 +12,7 @@ class UserRepository implements UserRepositoryInterface
          return User::create($params);
     }
 
-    public function update(array $params, int $id)
+    public function update(array $params, string|int $id)
     {
          return  $this->findById($id)->update($params);
     }
@@ -31,7 +31,7 @@ class UserRepository implements UserRepositoryInterface
         return true;
     }
 
-    public function findById(int $id)
+    public function findById(string|int $id)
     {
         return User::find($id);
     }
@@ -39,5 +39,10 @@ class UserRepository implements UserRepositoryInterface
     public function findByEmail(string $email)
     {
         return User::where('email', $email)->first();
+    }
+
+    public function persistImage(string $imageUrl, string|int $id)
+    {
+        return  $this->findById($id)->update([$imageUrl]);
     }
 }
